@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Computer Parts Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-image: url('background computer store.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 200px;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .item img {
+      max-width: 150px;
+      height: auto;
+    }
+
+    #cart {
+      margin-top: 20px;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    #total {
+      text-align: right;
+    }
+
+    #cartItems {
+      margin-bottom: 10px;
+    }
+
+    #clearBtn {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Computer Parts Store</h1>
+
+  <div class="container">
+    <div class="item">
+      <img src="motherboard.jpg" alt="motherboard">
+      <h3>motherboard</h3>
+      <p>Price: 25000</p>
+      <button onclick="addToCart('Motherboard', 25000)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="ram stick.jfif" alt="ram stick">
+      <h3>ram stick</h3>
+      <p>Price: 10000</p>
+      <button onclick="addToCart('ram stick', 10000)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="power supply.jpg" alt="power supply">
+      <h3>power supply</h3>
+      <p>Price: 11500</p>
+      <button onclick="addToCart('power supply', 11500)">Add to Cart</button>
+    </div>
+  </div>
+
+  <div id="cart">
+    <h2>Cart</h2>
+    <textarea id="cartItems" rows="5" cols="30" readonly></textarea>
+    <p id="total">Total: 0</p>
+    <button onclick="checkout()">Checkout</button>
+    <button id="clearBtn" onclick="clearCart()">Clear Cart</button>
+  </div>
+
+  <script>
+    let cartItems = [];
+    let total = 0;
+
+    function addToCart(itemName, price) {
+      cartItems.push(itemName);
+      total += price;
+      updateCart();
+    }
+
+    function updateCart() {
+      let cartItemsText = cartItems.join('\n');
+      document.getElementById('cartItems').value = cartItemsText;
+      document.getElementById('total').textContent = `Total: &;${total}`;
+    }
+
+    function checkout() {
+      alert(`Total: &;${total}`);
+      alert(`Selected items:\n${cartItems.join('\n')}`);
+      cartItems = [];
+      total = 0;
+      updateCart();
+    }
+
+    function clearCart() {
+      cartItems = [];
+      total = 0;
+      updateCart();
+    }
+  </script>
+</body>
+</html>
